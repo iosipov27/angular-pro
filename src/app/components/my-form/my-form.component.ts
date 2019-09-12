@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, AfterContentInit, ContentChild } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, AfterContentInit, QueryList , ContentChildren } from '@angular/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { RememberComponent } from '../remember/remember.component';
 
@@ -9,9 +9,9 @@ import { RememberComponent } from '../remember/remember.component';
 })
 export class MyFormComponent implements AfterContentInit {
 
-  @ContentChild(RememberComponent) remember = RememberComponent;
+  @ContentChildren(RememberComponent) remember = new QueryList<RememberComponent>();
 
-  public showMessage: boolean = false;
+  public showMessage: boolean;
 
   @Output() submited = new EventEmitter();
 
@@ -19,9 +19,9 @@ export class MyFormComponent implements AfterContentInit {
 
   ngAfterContentInit(): void {
     if (this.remember) {
-      this.remember.checked.subscribe((val: boolean) => {
-        this.showMessage = val;
-      })
+      this.remember.forEach((item) => {
+        item.checked.subscribe((val: boolean) => this.showMessage = val);
+      });
     }
     console.log(this.remember);
   }
