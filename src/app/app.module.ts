@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AuthMessage } from './components/auth-message.component';
 import { MyFormComponent } from './components/my-form/my-form.component';
 import { RememberComponent } from './components/remember/remember.component';
 
@@ -14,7 +15,8 @@ import { RememberComponent } from './components/remember/remember.component';
   declarations: [
     AppComponent,
     MyFormComponent,
-    RememberComponent
+    RememberComponent,
+    AuthMessage
   ],
   imports: [
     NgbModule.forRoot(),
