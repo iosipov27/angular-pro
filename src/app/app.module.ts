@@ -8,11 +8,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MyFormComponent } from './components/my-form/my-form.component';
+import { RememberComponent } from './components/remember/remember.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyFormComponent
+    MyFormComponent,
+    RememberComponent
   ],
   imports: [
     NgbModule.forRoot(),

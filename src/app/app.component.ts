@@ -15,4 +15,8 @@ export class AppComponent {
     console.log('login user', user);
   }
 
+  onChecked(val: boolean) {
+    console.log('checked', val);
+  }
+
 }
