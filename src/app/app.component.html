@@ -1,22 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col s5">
-      <app-my-form (submited)="createUser($event)">
-        <h3>Create User</h3>
-        <app-remember (checked)="onChecked($event)"></app-remember>
-        <button type="submit" class="btn btn-success">Create</button>
-      </app-my-form>
     </div>
     <div class="col s2"></div>
     <div class="col s5">
-      <app-my-form (submited)="loginUser($event)">
+      <button (click)="destroyComponent()" class="btn btn-success">Desrtroy</button>
+      <button (click)="moveComponent()" class="btn btn-success">Move</button>
+      <div #entry></div>
+      <!-- <app-my-form (submited)="loginUser($event)">
           <h3>Login User</h3>
           <app-remember (checked)="onChecked($event)"></app-remember>
-          <app-remember (checked)="onChecked($event)"></app-remember>
-          <app-remember (checked)="onChecked($event)"></app-remember>
-          <app-remember (checked)="onChecked($event)"></app-remember>
           <button type="submit" class="btn btn-success">Join US</button>
-      </app-my-form>
+      </app-my-form> -->
     </div>
   </div>
 

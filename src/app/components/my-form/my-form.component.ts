@@ -1,4 +1,4 @@
-import { Component, ViewChild, EventEmitter, Output, AfterContentInit, AfterViewInit, QueryList , ContentChildren } from '@angular/core';
+import { Component, ViewChild, EventEmitter, Output, AfterContentInit, AfterViewInit, QueryList , ContentChildren, ElementRef } from '@angular/core';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { RememberComponent } from '../remember/remember.component';
 import { AuthMessage } from '../auth-message.component';
@@ -10,11 +10,7 @@ import { AuthMessage } from '../auth-message.component';
 })
 export class MyFormComponent implements AfterContentInit, AfterViewInit {
 
-  @ViewChild(AuthMessage) message = AuthMessage;
-
-  @ContentChildren(RememberComponent) remember = new QueryList<RememberComponent>();
-
-  public showMessage: boolean;
+  title: string = 'Login Form!';
 
   @Output() submited = new EventEmitter();
 
@@ -25,17 +21,6 @@ export class MyFormComponent implements AfterContentInit, AfterViewInit {
   }
 
   ngAfterContentInit(): void {
-    if (this.message) {
-      this.message.days = 12;
-    }
-
-
-    if (this.remember) {
-      this.remember.forEach((item) => {
-        item.checked.subscribe((val: boolean) => this.showMessage = val);
-      });
-    }
-    console.log(this.remember);
   }
 
   onSubmit(val) {

@@ -27,6 +27,7 @@ import { RememberComponent } from './components/remember/remember.component';
 
   ],
   providers: [],
+  entryComponents: [MyFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
