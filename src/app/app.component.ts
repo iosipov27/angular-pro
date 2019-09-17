@@ -1,5 +1,5 @@
-import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef } from '@angular/core';
-import  { MyFormComponent } from './components/my-form/my-form.component';
+import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef, TemplateRef } from '@angular/core';
+import { MyFormComponent } from './components/my-form/my-form.component';
 
 
 @Component({
@@ -9,41 +9,25 @@ import  { MyFormComponent } from './components/my-form/my-form.component';
 })
 export class AppComponent implements AfterContentInit {
 
-  @ViewChild ('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
+  @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
+  @ViewChild('myContent') templ: TemplateRef<any>;
 
-  component: ComponentRef<MyFormComponent>;
-  component2: ComponentRef<MyFormComponent>;
+  public ctx = {
+    $implicit: 'Illia',
+    location: 'Kyiv, Ukraine'
+  };
 
-  constructor(private resolver: ComponentFactoryResolver ) {
+  constructor(private resolver: ComponentFactoryResolver) {
 
   }
 
   ngAfterContentInit(): void {
-    let authFormFactory = this.resolver.resolveComponentFactory(MyFormComponent);
-    this.component = this.entry.createComponent(authFormFactory);
-    this.component2 = this.entry.createComponent(authFormFactory, 0);
-    this.component.instance.title = 'My New Title';
-    this.component.instance.submited.subscribe(this.loginUser);
+    this.entry.createEmbeddedView(this.templ, {
+      $implicit: 'Illia',
+      location: 'Kyiv, Ukraine'
+    });
+
   }
 
-  destroyComponent() {
-    this.component.destroy();
-  }
-
-  moveComponent() {
-    this.entry.move(this.component2.hostView, 1);
-  }
-
-  createUser(user) {
-    console.log('create user', user);
-  }
-
-  loginUser(user) {
-    console.log('login user', user);
-  }
-
-  onChecked(val: boolean) {
-    console.log('checked', val);
-  }
 
 }
