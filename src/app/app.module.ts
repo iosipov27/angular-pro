@@ -11,12 +11,15 @@ import { AuthMessage } from './components/auth-message.component';
 import { MyFormComponent } from './components/my-form/my-form.component';
 import { RememberComponent } from './components/remember/remember.component';
 
+import { CreditCardDirective } from './directives/credit-card.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
     MyFormComponent,
     RememberComponent,
-    AuthMessage
+    AuthMessage,
+    CreditCardDirective
   ],
   imports: [
     NgbModule.forRoot(),
