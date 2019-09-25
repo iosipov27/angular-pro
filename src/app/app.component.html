@@ -10,15 +10,17 @@
       </ng-container>
     </div>
   </div>
-
   <input type="text" credit-card />
+
+  <label tooltip="toltip content" #myTooltip="tooltip" (mouseover)="myTooltip.show()" (mouseout)="myTooltip.hide()">
+    Enter 32 digits
+    <input type="text" />
+  </label>
 
   <ng-template let-name let-location="location" #myContent>
     {{ name }} = {{ location }}
   </ng-template>
 
-  <!-- <ng-template #location>
-     Here is the Next Location
-  </ng-template> -->
+
 
 </div>

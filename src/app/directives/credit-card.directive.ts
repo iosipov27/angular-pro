@@ -1,7 +1,5 @@
 import { Directive, HostListener, HostBinding } from '@angular/core';
 
-
-
 @Directive({
   selector: '[credit-card]'
 })
@@ -23,6 +21,4 @@ export class CreditCardDirective {
 
     input.value = trimmed;
   }
-
-
 }

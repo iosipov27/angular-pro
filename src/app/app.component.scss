@@ -1,0 +1,16 @@
+
+
+:host ::ng-deep .my-tooltip {
+    width: 150px;
+    padding: 10px;
+    background: black;
+    color: white;
+    position: absolute;
+    top: -8px;
+    right: -158px;
+    border-radius: 5px;
+}
+
+:host ::ng-deep .hidden {
+    display: none;
+}

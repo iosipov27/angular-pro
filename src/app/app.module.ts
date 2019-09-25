@@ -12,6 +12,8 @@ import { MyFormComponent } from './components/my-form/my-form.component';
 import { RememberComponent } from './components/remember/remember.component';
 
 import { CreditCardDirective } from './directives/credit-card.directive';
+import { TooltipDirective } from './directives/tooltip.directive';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import { CreditCardDirective } from './directives/credit-card.directive';
     MyFormComponent,
     RememberComponent,
     AuthMessage,
-    CreditCardDirective
+    CreditCardDirective,
+    TooltipDirective
   ],
   imports: [
     NgbModule.forRoot(),
