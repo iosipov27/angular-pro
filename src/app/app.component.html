@@ -1,26 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col s3">
+
+
+    <div class="col">
+      <ul>
+        <li *ngFor="let item of items; let i = index">
+          <span>{{ item.age }} {{ item.name }} {{ item.location }}</span>
+        </li>
+      </ul>
+      <ul>
+      <ng-template myFor [myForOf]="items" let-item let-i="index">
+        <li>
+          <span>{{ item.age }} {{ item.name }} {{ item.location }}</span>
+        </li>
+      </ng-template>
+
+        <!-- <div myFor [myForOf]="items" ></div> -->
+      </ul>
     </div>
-    <div class="col s3">
-      <div #entry></div>
-    </div>
-    <div class="col s3">
-      <ng-container [ngTemplateOutlet]="myContent" [ngTemplateOutletContext]="ctx">
-      </ng-container>
-    </div>
+
+
+
   </div>
-  <input type="text" credit-card />
-
-  <label tooltip="toltip content" #myTooltip="tooltip" (mouseover)="myTooltip.show()" (mouseout)="myTooltip.hide()">
-    Enter 32 digits
-    <input type="text" />
-  </label>
-
-  <ng-template let-name let-location="location" #myContent>
-    {{ name }} = {{ location }}
-  </ng-template>
-
-
-
-</div>

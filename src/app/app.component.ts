@@ -7,27 +7,13 @@ import { MyFormComponent } from './components/my-form/my-form.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent {
 
-  @ViewChild('entry', { read: ViewContainerRef }) entry: ViewContainerRef;
-  @ViewChild('myContent') templ: TemplateRef<any>;
-
-  public ctx = {
-    $implicit: 'Illia',
-    location: 'Kyiv, Ukraine'
-  };
-
-  constructor(private resolver: ComponentFactoryResolver) {
-
-  }
-
-  ngAfterContentInit(): void {
-    this.entry.createEmbeddedView(this.templ, {
-      $implicit: 'Illia',
-      location: 'Kyiv, Ukraine'
-    });
-
-  }
+  items = [
+    { name: 'Illia', age: 13, location: 'New York' },
+    { name: 'Lilia', age: 23, location: 'Super York' },
+    { name: 'Kek', age: 23, location: 'Kekork' },
+  ]
 
 
 }

@@ -12,6 +12,7 @@ import { MyFormComponent } from './components/my-form/my-form.component';
 import { RememberComponent } from './components/remember/remember.component';
 
 import { CreditCardDirective } from './directives/credit-card.directive';
+import { MyForDirective } from './directives/my-for.directive';
 import { TooltipDirective } from './directives/tooltip.directive';
 
 
@@ -22,6 +23,7 @@ import { TooltipDirective } from './directives/tooltip.directive';
     RememberComponent,
     AuthMessage,
     CreditCardDirective,
+    MyForDirective,
     TooltipDirective
   ],
   imports: [
