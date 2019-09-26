@@ -10,12 +10,13 @@
       </ul>
       <ul>
       <ng-template myFor [myForOf]="items" let-item let-i="index">
-        <li>
-          <span>{{ item.age }} {{ item.name }} {{ item.location }}</span>
-        </li>
-      </ng-template>
+        <ul>
+            <li>
+                <span>{{ item.age | filesize }} {{ item.name }} {{ item.location }}</span>
+              </li>
+        </ul>
 
-        <!-- <div myFor [myForOf]="items" ></div> -->
+      </ng-template>
       </ul>
     </div>
 
