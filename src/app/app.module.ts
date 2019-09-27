@@ -1,44 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
 
-import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
-import { AuthMessage } from './components/auth-message.component';
-import { MyFormComponent } from './components/my-form/my-form.component';
-import { RememberComponent } from './components/remember/remember.component';
-
-import  { FilesizePipe } from './pipes/filesize.pipe';
-
-import { CreditCardDirective } from './directives/credit-card.directive';
-import { MyForDirective } from './directives/my-for.directive';
-import { TooltipDirective } from './directives/tooltip.directive';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MyFormComponent,
-    RememberComponent,
-    AuthMessage,
-    CreditCardDirective,
-    MyForDirective,
-    TooltipDirective,
-    FilesizePipe
+    AppComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-
+    StockInventoryModule
   ],
   providers: [],
-  entryComponents: [MyFormComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

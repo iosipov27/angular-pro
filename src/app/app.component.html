@@ -3,23 +3,8 @@
 
 
     <div class="col">
-      <ul>
-        <li *ngFor="let item of items; let i = index">
-          <span>{{ item.age }} {{ item.name }} {{ item.location }}</span>
-        </li>
-      </ul>
-      <ul>
-      <ng-template myFor [myForOf]="items" let-item let-i="index">
-        <ul>
-            <li>
-                <span>{{ item.age | filesize }} {{ item.name }} {{ item.location }}</span>
-              </li>
-        </ul>
-
-      </ng-template>
-      </ul>
+      <stock-inventory></stock-inventory>
     </div>
 
-
-
   </div>
+</div>
