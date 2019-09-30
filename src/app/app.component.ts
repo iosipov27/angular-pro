@@ -9,11 +9,4 @@ import { MyFormComponent } from './components/my-form/my-form.component';
 })
 export class AppComponent {
 
-  items = [
-    { name: 'Illia', age: 13, location: 'New York' },
-    { name: 'Lilia', age: 23, location: 'Super York' },
-    { name: 'Kek', age: 23, location: 'Kekork' },
-  ]
-
-
 }

@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef, TemplateRef } from '@angular/core';
+import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef, TemplateRef, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Product } from '../../models';
 
@@ -16,7 +16,7 @@ import { Product } from '../../models';
         </option>
       </select>
       <input type="number" min="3" max="1000" formControlName="quantity"/>
-      <button type="button">Add new</button>
+      <button type="button" (click)="addProduct()">Add new</button>
     </div>
   </div>
   `,
@@ -25,4 +25,9 @@ import { Product } from '../../models';
 export class StockSelectorComponent {
   @Input() parent: FormGroup;
   @Input() products: Product[];
+  @Output() added = new EventEmitter<any>();
+
+  addProduct() {
+    this.added.emit(this.parent.get('selector').value);
+  }
 }
