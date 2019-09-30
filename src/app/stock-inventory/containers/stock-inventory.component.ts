@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from '../models';
@@ -33,12 +33,12 @@ import { Product } from '../models';
     </form>
   </div>`
 })
-export class StockInventoryComponent {
+export class StockInventoryComponent implements OnInit {
 
   products: Product[] = [
-    { id: 4, name: 'Extra', quantity: 45 },
+    { id: 4, name: 'Extra', quantity: 3 },
     { id: 42, name: 'Extra Gun', quantity: 454 },
-    { id: 34, name: 'Extra Puma', quantity: 43 },
+    { id: 34, name: 'Extra Puma', quantity: 90 },
     { id: 44, name: 'Extra Super', quantity: 425 }
   ];
 
@@ -51,6 +51,12 @@ export class StockInventoryComponent {
     stock: this.fb.array([
     ])
   });
+
+  ngOnInit(): void {
+    this.form.get('stock').valueChanges.subscribe(data => {
+      console.log(data);
+    })
+  }
 
   createStock(stock: any = {}) {
     return this.fb.group({
