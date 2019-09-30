@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef, TemplateRef } from '@angular/core';
+import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef, TemplateRef, Output } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 
 
@@ -11,7 +11,7 @@ import { FormGroup, FormArray } from '@angular/forms';
           <div [formGroupName]="i">
             {{ item.value.product_id }}
             <input type="number" formControlName="quantity" />
-            <button type="button">Remove</button>
+            <button type="button" (click)="removeProduct(item.value, i)">Remove</button>
           </div>
         </div>
     </div>
@@ -21,9 +21,13 @@ import { FormGroup, FormArray } from '@angular/forms';
 })
 export class StockProductsComponent {
   @Input() parent: FormGroup;
-
+  @Output() onRemove = new EventEmitter<any>();
 
   get stocks() {
     return (this.parent.get('stock') as FormArray ).controls;
+  }
+
+  removeProduct(product: any, index: number) {
+    this.onRemove.emit({ product, index });
   }
 }
