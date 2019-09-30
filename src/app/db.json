@@ -1,0 +1,30 @@
+{
+    "cart": [
+        {
+            "product_id": 12,
+            "quantity": 4
+        }
+    ],
+    "products": [
+        {
+            "id": 4,
+            "name": "Extra",
+            "quantity": 3
+        },
+        {
+            "id": 42,
+            "name": "Extra Gun",
+            "quantity": 454
+        },
+        {
+            "id": 34,
+            "name": "Extra Puma",
+            "quantity": 90
+        },
+        {
+            "id": 44,
+            "name": "Extra Super",
+            "quantity": 425
+        }
+    ]
+}

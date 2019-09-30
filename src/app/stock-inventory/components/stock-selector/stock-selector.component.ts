@@ -15,7 +15,7 @@ import { Product } from '../../models';
           {{ item.name }}
         </option>
       </select>
-      <input type="number" min="3" max="1000" formControlName="quantity"/>
+      <stock-counter [min]="20" [max]="1000" [step]="50" formControlName="quantity"></stock-counter>
       <button type="button" (click)="addProduct()">Add new</button>
     </div>
   </div>
