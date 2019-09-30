@@ -1,6 +1,6 @@
-import { Component, Input, EventEmitter, ViewChild, ViewContainerRef, AfterContentInit, ComponentFactoryResolver, ComponentRef, TemplateRef } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Product } from '../models';
 
 @Component({
@@ -42,20 +42,20 @@ export class StockInventoryComponent {
     { id: 44, name: 'Extra Super', quantity: 425 }
   ];
 
-  form = new FormGroup({
-    store: new FormGroup({
-      branch: new FormControl(''),
-      code: new FormControl('')
+  form = this.fb.group({
+    store: this.fb.group({
+      branch: '',
+      code: ''
     }),
     selector: this.createStock({}),
-    stock: new FormArray([
+    stock: this.fb.array([
     ])
   });
 
   createStock(stock: any = {}) {
-    return new FormGroup({
-      product_id: new FormControl(stock.product_id || ''),
-      quantity: new FormControl(stock.quantity || 10)
+    return this.fb.group({
+      product_id: stock.product_id || '',
+      quantity: stock.quantity || 10
     })
   }
 
@@ -75,7 +75,7 @@ export class StockInventoryComponent {
     console.log(this.form.value);
   }
 
-  constructor() {
+  constructor(private fb: FormBuilder) {
 
   }
 }
