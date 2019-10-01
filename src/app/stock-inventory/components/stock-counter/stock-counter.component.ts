@@ -12,11 +12,18 @@ const COUNTER_CONTROL_ACCESSOR = {
     styleUrls: ['stock-counter.component.scss'],
     providers: [COUNTER_CONTROL_ACCESSOR],
     template: `
-        <div>{{ value }}</div>
-        <div>
-            <button type="buttom" (click)="increase()">+</button>
-            <button type="buttom" (click)="descrease()">-</button>
+        <div class="row">
+            <div class="col-sm-4">
+                {{ value }}
+            </div>
+            <div class="col-sm-8">
+                <div class="btn-group btn-group-toggle">
+                    <button type="buttom" (click)="increase()" class="btn btn-outline-secondary">+</button>
+                    <button type="buttom" (click)="descrease()" class="btn btn-outline-secondary">-</button>
+                </div>
+            </div>
         </div>
+
     `
 })
 export class StockCounterComponent implements ControlValueAccessor {

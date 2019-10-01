@@ -8,15 +8,25 @@ import { Product } from '../../models';
   selector: 'stock-selector',
   template: `
   <div [formGroup]="parent">
+
     <div formGroupName="selector">
-      <select formControlName="product_id">
-      <option [value]="">Select product</option>
-        <option *ngFor="let item of products" [value]="item.id">
-          {{ item.name }}
-        </option>
-      </select>
-      <stock-counter [min]="20" [max]="1000" [step]="50" formControlName="quantity"></stock-counter>
-      <button type="button" (click)="addProduct()">Add new</button>
+      <div class="row">
+        <div class="col-sm-6">
+          <select formControlName="product_id" class="form-control">
+            <option [value]="">Select product</option>
+            <option *ngFor="let item of products" [value]="item.id">
+            {{ item.name }}
+            </option>
+          </select>
+        </div>
+        <div class="col-sm-3">
+          <stock-counter [min]="20" [max]="1000" [step]="50" formControlName="quantity"></stock-counter>
+        </div>
+        <div class="col-sm-3">
+          <button type="button" (click)="addProduct()" class="btn btn-primary">Add new</button>
+        </div>
+      </div>
+      
     </div>
   </div>
   `,

@@ -5,17 +5,23 @@ import { FormGroup, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'stock-products',
-  template: `<div [formGroup]="parent">
+  template: `
+  <div [formGroup]="parent">
     <div formArrayName="stock">
-        <div *ngFor="let item of stocks; let i = index">
-          <div [formGroupName]="i">
-            {{ item.value.product_id }}
-            <input type="number" formControlName="quantity" />
-            <button type="button" (click)="removeProduct(item.value, i)">Remove</button>
+        <div *ngFor="let item of stocks; let i = index" class="form-group">
+          <div [formGroupName]="i" class="row">
+            <div class="col-sm-3">
+              {{ item.value.product_id }}
+            </div>
+            <div class="col-sm-3">
+              <input type="number" formControlName="quantity" class="form-control"/>
+            </div>
+            <div class="col-sm-6">
+              <button type="button" (click)="removeProduct(item.value, i)" class="btn btn-outline-secondary">x</button>
+            </div>
           </div>
         </div>
     </div>
-
   </div>`,
   styleUrls: ['./stock-products.component.scss']
 })

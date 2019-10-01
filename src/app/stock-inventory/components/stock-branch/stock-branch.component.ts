@@ -7,8 +7,12 @@ import { FormGroup } from '@angular/forms';
   selector: 'stock-branch',
   template: `<div [formGroup]="parent">
     <div formGroupName="store">
-      <input formControlName="branch" type="text" placeholder="Branch ID"/>
-      <input formControlName="code" type="text" placeholder="Code"/>
+      <div class="form-group">
+        <input formControlName="branch" type="text" placeholder="Branch ID" class="form-control"/>
+      </div>
+      <div class="form-group">
+        <input formControlName="code" type="text" placeholder="Code" class="form-control"/>
+      </div>
     </div>
   </div>`,
   styleUrls: ['./stock-branch.component.scss']

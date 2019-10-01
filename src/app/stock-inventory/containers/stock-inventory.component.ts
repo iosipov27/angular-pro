@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product } from '../models';
 
 @Component({
@@ -10,20 +10,24 @@ import { Product } from '../models';
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <stock-branch [parent]="form"></stock-branch>
+ 
+      <div class="form-group">
+        <stock-selector
+          [products]="products"
+          (added)="onAdded($event)"
+          [parent]="form">
+        </stock-selector>
+      </div>
 
-      <stock-selector
-        [products]="products"
-        (added)="onAdded($event)"
-        [parent]="form">
-      </stock-selector>
-
-      <stock-products
-        (onRemove)="onProductRemove($event)"
-        [parent]="form">
-      </stock-products>
+      <div class="form-group">
+        <stock-products
+          (onRemove)="onProductRemove($event)"
+          [parent]="form">
+        </stock-products>   
+      </div>
 
       <div class="stock-inventory__buttons">
-        <button type="submit" [disabled]="form.invalid">Submit</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
       </div>
 
       <pre>
@@ -44,8 +48,8 @@ export class StockInventoryComponent implements OnInit {
 
   form = this.fb.group({
     store: this.fb.group({
-      branch: '',
-      code: ''
+      branch: ['', Validators.required],
+      code:  ['', Validators.required]
     }),
     selector: this.createStock({}),
     stock: this.fb.array([
