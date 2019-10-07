@@ -9,4 +9,12 @@ import { MyFormComponent } from './components/my-form/my-form.component';
 })
 export class AppComponent {
 
+
+  onActivate(ev) {
+    console.log('On activate', ev);
+  }
+
+  onDeactivate(ev) {
+    console.log('On deactivate', ev);
+  }
 }

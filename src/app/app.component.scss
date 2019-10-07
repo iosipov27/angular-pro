@@ -18,3 +18,10 @@
 .container {
     margin-top: 40px !important;
 }
+
+.container__nav {
+    a {
+        display: block;
+        padding: 15px;
+    }
+}

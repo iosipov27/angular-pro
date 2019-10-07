@@ -6,7 +6,7 @@ import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
 
 
 import { AppComponent } from './app.component';
-
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
+    AppRoutingModule,
     StockInventoryModule
   ],
   providers: [],
