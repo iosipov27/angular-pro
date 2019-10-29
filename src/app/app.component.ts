@@ -9,6 +9,7 @@ import { MyFormComponent } from './components/my-form/my-form.component';
 })
 export class AppComponent {
 
+  title: 'angular-pro';
 
   onActivate(ev) {
     console.log('On activate', ev);
