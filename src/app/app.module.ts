@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductService } from './services/products.service';
 
 import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
 
@@ -18,7 +19,9 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     StockInventoryModule
   ],
-  providers: [],
+  providers: [
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

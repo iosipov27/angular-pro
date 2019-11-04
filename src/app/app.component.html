@@ -2,24 +2,24 @@
 
 <div class="container container-fluid">
   <div class="row">
-      <div class="col col-md-3">
+      <div class="col col-md-3 line-right">
         <div class="btn-group-vertical">
-
           <nav class="container__nav">
-            <a routerLink="folder/inbox">Inbox</a>
-            <a routerLink="folder/trash">Trash</a>
-          </nav>
+            <a routerLinkActive="active" [routerLink]="[{outlets: {primary: 'folder/inbox', pane: null}}]">Inbox</a>
+            <a routerLinkActive="active" [routerLink]="[{outlets: {primary: 'folder/trash', pane: null}}]">Trash</a>
+            <a routerLinkActive="active" routerLink="dashboard">Dashboard</a>
 
+          </nav>
         </div>
       </div>
-      <div class="col col-md-4">
+      <div class="col col-md-4 line-right">
           <router-outlet
             (activate)="onActivate($event)"
             (deactivate)="onDeactivate($event)"
           ></router-outlet>
       </div>
       <div class="col col-md-5">
-          One of three columns
+          <router-outlet name="pane"></router-outlet>
       </div>
   </div>
 </div>

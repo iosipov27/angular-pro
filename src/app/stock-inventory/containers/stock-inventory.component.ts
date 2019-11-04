@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { ProductService } from './../../services/products.service';
 
 import { filter } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'stock-inventory',
@@ -10,10 +13,9 @@ import { filter } from 'rxjs/operators';
 })
 export class StockInventoryComponent {
 
-  constructor(private router: Router) {
-    this.router.events.pipe(filter(item => item instanceof NavigationEnd))
-      .subscribe(ev => {
-        console.log(ev);
-      })
+  products: Observable<any> = this.router.data.pipe(pluck('products'));
+
+  constructor(private router: ActivatedRoute) {
+
   }
 }
