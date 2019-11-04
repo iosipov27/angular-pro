@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StockInventoryComponent } from './containers/stock-inventory.component';
-import { DashboardComponent } from './containers/dashboard/dashboard.component';
-import { StockTrashComponent } from './containers/stock-trash/stock-trash.component';
 import { StockMessageComponent } from './containers/stock-message/stock-message.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductResolver } from './containers/stock-inventory.resolve';
@@ -14,13 +12,11 @@ import  { StockBranchComponent, StockProductsComponent, StockSelectorComponent, 
 @NgModule({
   declarations: [
     StockInventoryComponent,
-    StockTrashComponent,
-    StockMessageComponent,
+        StockMessageComponent,
     StockBranchComponent,
     StockProductsComponent,
     StockSelectorComponent,
     StockCounterComponent,
-    DashboardComponent
   ],
   imports: [
     CommonModule,

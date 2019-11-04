@@ -7,7 +7,7 @@
           <nav class="container__nav">
             <a routerLinkActive="active" [routerLink]="[{outlets: {primary: 'folder/inbox', pane: null}}]">Inbox</a>
             <a routerLinkActive="active" [routerLink]="[{outlets: {primary: 'folder/trash', pane: null}}]">Trash</a>
-            <a routerLinkActive="active" routerLink="dashboard">Dashboard</a>
+            <a routerLinkActive="active" [routerLink]="[{outlets: {primary: 'dashboard', pane: null}}]">Dashboard</a>
 
           </nav>
         </div>

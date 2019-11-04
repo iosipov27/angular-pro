@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StockInventoryComponent } from './stock-inventory/containers/stock-inventory.component';
-import { DashboardComponent } from './stock-inventory/containers/dashboard/dashboard.component';
 import { StockMessageComponent } from './stock-inventory/containers/stock-message/stock-message.component';
 import { ProductResolver } from './stock-inventory/containers/stock-inventory.resolve';
 import { StockMessageResolver } from './stock-inventory/containers/stock-message/stock-message.resolver';
@@ -21,8 +20,7 @@ const routes: Routes = [
     resolve: {
       message: StockMessageResolver
      }
-  },
-  { path: 'dashboard', component: DashboardComponent },
+  }
 ];
 
 @NgModule({

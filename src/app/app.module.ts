@@ -4,10 +4,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from './services/products.service';
 
 import { StockInventoryModule } from './stock-inventory/stock-inventory.module';
+// import { DashboardModule } from './dashboard/dashboard.module';
 
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { RouterModule, Route } from '@angular/router';
+
+const routes: Route[] = [{
+  path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'
+}];
 
 @NgModule({
   declarations: [
@@ -17,7 +23,8 @@ import { AppRoutingModule } from './app-routing.module';
     NgbModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
-    StockInventoryModule
+    StockInventoryModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [
     ProductService
