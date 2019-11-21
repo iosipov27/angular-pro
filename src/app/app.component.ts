@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { merge, Observable, Subject, interval, NEVER, } from 'rxjs';
-import { mapTo, switchMap, scan } from 'rxjs/operators';
+import { mapTo, switchMap, scan, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -14,14 +14,21 @@ export class AppComponent {
   butt2$: Subject<any> = new Subject();
 
 
+  counterState$: Observable<any> = merge(
+    this.butt1$,
+    this.butt2$
+  )
+
+
   constructor() {
+    const comands$ = this.counterState$.pipe(
+      switchMap(isTicking => {
+        return (isTicking) ? interval(100) : NEVER
+      }),
+      scan(acc => ++acc),
+      shareReplay(1));
 
-    this.butt1$.pipe(switchMap(isTicking => {
-      return (isTicking) ? interval(1000) : NEVER
-    }), scan(acc => ++acc)).subscribe(data => {
-      console.log(data);
-    })
-
+    comands$.subscribe(console.log);
   }
 
   run() {
@@ -29,6 +36,6 @@ export class AppComponent {
   }
 
   stop() {
-    this.butt1$.next(false);
+    this.butt2$.next(false);
   }
 }
