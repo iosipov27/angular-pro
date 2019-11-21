@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { merge, Observable, Subject, interval, NEVER, } from 'rxjs';
-import { mapTo, switchMap, scan, shareReplay } from 'rxjs/operators';
+import { mapTo, switchMap, scan, shareReplay, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -12,22 +12,31 @@ export class AppComponent {
 
   butt1$: Subject<any> = new Subject();
   butt2$: Subject<any> = new Subject();
+  butt3$: Subject<any> = new Subject();
+  butt4$: Subject<any> = new Subject();
+
+
 
 
   counterState$: Observable<any> = merge(
-    this.butt1$,
-    this.butt2$
+    this.butt1$.pipe(mapTo({ isTicking: true })),
+    this.butt2$.pipe(mapTo({ isTicking: false })),
+    this.butt3$.pipe(mapTo({ isKeking: 10 })),
+    this.butt4$.pipe(mapTo({ isKeking: 101 })),
   )
 
-
   constructor() {
-    const comands$ = this.counterState$.pipe(
-      switchMap(isTicking => {
-        return (isTicking) ? interval(100) : NEVER
-      }),
-      scan(acc => ++acc),
-      shareReplay(1));
+    const initialState = {
+      isTicking: false,
+      isKeking: 0
+    }
 
+    const comands$ =
+      this.counterState$.pipe(
+        startWith(initialState),
+        scan((state, command) => ({ ...state, ...command })),
+        
+      )
     comands$.subscribe(console.log);
   }
 
@@ -37,5 +46,13 @@ export class AppComponent {
 
   stop() {
     this.butt2$.next(false);
+  }
+
+  kek() {
+    this.butt3$.next(true);
+  }
+
+  lol() {
+    this.butt4$.next(true);
   }
 }
