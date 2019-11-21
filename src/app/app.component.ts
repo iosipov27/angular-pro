@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { merge, Observable, Subject, interval, NEVER, } from 'rxjs';
-import { mapTo, switchMap, scan, shareReplay, startWith } from 'rxjs/operators';
+import { mapTo, switchMap, scan, shareReplay, startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -35,9 +35,10 @@ export class AppComponent {
       this.counterState$.pipe(
         startWith(initialState),
         scan((state, command) => ({ ...state, ...command })),
-        
+
       )
-    comands$.subscribe(console.log);
+    comands$.pipe(map(state => state.isKeking))
+      .subscribe(console.log);
   }
 
   run() {
