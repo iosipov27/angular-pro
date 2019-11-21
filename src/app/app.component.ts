@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { merge, Observable, Subject, interval, NEVER, } from 'rxjs';
-import { mapTo, switchMap } from 'rxjs/operators';
+import { mapTo, switchMap, scan } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +18,7 @@ export class AppComponent {
 
     this.butt1$.pipe(switchMap(isTicking => {
       return (isTicking) ? interval(1000) : NEVER
-    })).subscribe(data => {
+    }), scan(acc => ++acc)).subscribe(data => {
       console.log(data);
     })
 
