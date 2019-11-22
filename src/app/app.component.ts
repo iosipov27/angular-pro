@@ -1,7 +1,13 @@
 import { Component } from '@angular/core';
 
 import { merge, Observable, Subject, interval, NEVER, } from 'rxjs';
-import { mapTo, switchMap, scan, shareReplay, startWith, map, pluck } from 'rxjs/operators';
+import { mapTo, switchMap, scan, shareReplay, startWith, map, pluck, distinctUntilChanged } from 'rxjs/operators';
+
+
+interface Count {
+  isTicking: boolean,
+  isKeking: number,
+}
 
 @Component({
   selector: 'app-root',
@@ -26,12 +32,6 @@ export class AppComponent {
   )
 
   constructor() {
-
-    interface Count {
-      isTicking: boolean,
-      isKeking: number,
-    }
-
     const counterStateKeys = {
       isTicking: 'isTicking',
       isKeking: 'isKeking'
@@ -47,11 +47,18 @@ export class AppComponent {
         startWith(initialState),
         scan((state, command) => ({ ...state, ...command })),)
 
-    const counts$ = comands$.pipe(pluck<Count, number>(counterStateKeys.isKeking));
-    const isSounts$ = comands$.pipe(pluck<Count, boolean>(counterStateKeys.isTicking));
 
-    isSounts$.subscribe(console.log);
+    const counts$ = this.queryState(counterStateKeys.isTicking)(comands$);
+    const isSounts$ = this.queryState(counterStateKeys.isKeking)(comands$);
+
+    isSounts$.pipe(map(data => data + ' MB')).subscribe(console.log);
     counts$.subscribe(console.log);
+  }
+
+  queryState(name) {
+    return (obs: Observable<any>) => {
+      return obs.pipe(pluck<Count, any>(name), distinctUntilChanged())
+    }
   }
 
   run() {
