@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { merge, Observable, Subject, interval, NEVER, } from 'rxjs';
+import { merge, Observable, Subject, interval, NEVER, timer, } from 'rxjs';
 import { mapTo, switchMap, scan, shareReplay, startWith, map, pluck, distinctUntilChanged } from 'rxjs/operators';
 
 
@@ -45,14 +45,22 @@ export class AppComponent {
     const comands$ =
       this.counterState$.pipe(
         startWith(initialState),
-        scan((state, command) => ({ ...state, ...command })),)
+        scan((state, command) => ({ ...state, ...command })));
 
-
-    const counts$ = this.queryState(counterStateKeys.isTicking)(comands$);
+    const isTicking$ = this.queryState(counterStateKeys.isTicking)(comands$);
     const isSounts$ = this.queryState(counterStateKeys.isKeking)(comands$);
 
-    isSounts$.pipe(map(data => data + ' MB')).subscribe(console.log);
-    counts$.subscribe(console.log);
+    const intervalTicks$ = isTicking$.pipe(
+      switchMap((isTicking) => (isTicking) ? timer(0, 200) : NEVER )
+    );
+
+    intervalTicks$.subscribe(console.log);
+
+
+
+    // isSounts$.pipe(map(data => data + ' MB')).subscribe(console.log);
+
+
   }
 
   queryState(name) {
