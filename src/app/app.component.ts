@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
 
 import { merge, Observable, Subject, interval, NEVER, timer, } from 'rxjs';
-import { mapTo, switchMap, scan, shareReplay, startWith, map, pluck, distinctUntilChanged } from 'rxjs/operators';
+import { mapTo, switchMap, scan, shareReplay, startWith, map, pluck, distinctUntilChanged, tap, withLatestFrom } from 'rxjs/operators';
 
 
 interface Count {
   isTicking: boolean,
   isKeking: number,
 }
+
+interface countdownState {
+  count: number
+}
+
 
 @Component({
   selector: 'app-root',
@@ -20,6 +25,7 @@ export class AppComponent {
   butt2$: Subject<any> = new Subject();
   butt3$: Subject<any> = new Subject();
   butt4$: Subject<any> = new Subject();
+  pragmaticalCommand: Subject<countdownState> = new Subject();
 
 
 
@@ -29,6 +35,7 @@ export class AppComponent {
     this.butt2$.pipe(mapTo({ isTicking: false })),
     this.butt3$.pipe(mapTo({ isKeking: 10 })),
     this.butt4$.pipe(mapTo({ isKeking: 101 })),
+    this.pragmaticalCommand.asObservable()
   )
 
   constructor() {
@@ -54,7 +61,16 @@ export class AppComponent {
       switchMap((isTicking) => (isTicking) ? timer(0, 200) : NEVER )
     );
 
-    intervalTicks$.subscribe(console.log);
+      const comandFromTick$ = intervalTicks$.pipe(
+        withLatestFrom(this.counterState$, (counts) => counts),
+        tap((count) => {
+          console.log(count);
+          let n = Number(count);
+          this.pragmaticalCommand.next({ count: ++n })
+        }
+        )
+      ).subscribe();
+
 
 
 
