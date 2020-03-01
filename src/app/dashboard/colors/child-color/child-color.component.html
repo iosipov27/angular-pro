@@ -1,0 +1,9 @@
+<ng-container *ngIf="colors$ | async as color">
+  <input #picker type="color"
+  [value]="color"
+  (change)="updateColor(picker.value)">
+
+
+  <div>Color: {{ color.color }}</div>
+
+</ng-container>
